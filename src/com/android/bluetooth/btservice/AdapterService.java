@@ -875,15 +875,9 @@ public class AdapterService extends Service {
         }
 
         public boolean configHciSnoopLog(boolean enable) {
-            if ((Binder.getCallingUid() != Process.SYSTEM_UID) &&
-                (!Utils.checkCaller())) {
-                Log.w(TAG,"configHciSnoopLog(): not allowed for non-active user");
-                return false;
-            }
 
-            AdapterService service = getService();
-            if (service == null) return false;
-            return service.configHciSnoopLog(enable);
+                return false;
+                
         }
 
         public void registerCallback(IBluetoothCallback cb) {
@@ -1343,8 +1337,7 @@ public class AdapterService extends Service {
     }
 
     boolean configHciSnoopLog(boolean enable) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PERM, "Need BLUETOOTH permission");
-        return configHciSnoopLogNative(enable);
+        return false;
     }
 
      void registerCallback(IBluetoothCallback cb) {
